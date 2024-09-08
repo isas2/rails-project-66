@@ -1,0 +1,30 @@
+.d-flex.flex-wrap.align-items-center.py-2.border-bottom
+  .navbar.navbar-expand-md.navbar-light.me-auto
+    = link_to root_path, class: 'navbar-brand.me-md-4'
+      = image_tag asset_path('logo.png'), width: 30, alt: t('layouts.hexlet_logo')
+    #navbarToggler.collapse.navbar-collapse
+      ul.nav.nav-pills.flex-grow-1.navbar-nav.me-auto
+        li.nav-item.me-2
+          = link_to t('.main'), root_path,
+                  class: 'nav-link text-dark'
+        - if user_signed_in?
+          li.nav-item.me-2
+            = link_to t('web.repositories.index.title'), repositories_path,
+                    class: 'nav-link text-dark'
+
+  ul.nav.nav-pills
+    - if user_signed_in?
+      li.nav-item
+        = link_to root_path, class: 'nav-link text-secondary'
+          = current_user.email
+      li.nav-item
+        = button_to t('.sign_out'), logout_path,
+                method: :delete,
+                class: 'nav-link link-dark'
+
+    - else
+      li.nav-item
+        = button_to auth_request_path('Github'),
+                data: { turbo: false },
+                class: 'nav-link link-dark'
+          = t('.sign_in')

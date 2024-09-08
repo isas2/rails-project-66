@@ -1,0 +1,41 @@
+en:
+  actions:
+    add: Add
+    archive: Archive
+    archive_confirmation: Confirm archive
+    edit: Edit
+    delete: Delete
+    delete_confirmation: Confirm delete
+    publish: Publish
+    reject: Reject
+    show: Show
+    title: Actions
+    to_moderate: To moderate
+  search:
+    reset: Reset
+    go: Search
+  web:
+    auth:
+      callback:
+        success: You have signed in successfully!
+      delete:
+        success: You have logged out successfully!
+    home:
+      index:
+        title: Repository quality analyzer
+        text: A project that helps automatically monitor the quality of repositories on Github. It tracks changes and runs them through built-in analyzers. Then it generates reports and sends them to the user.
+        link: Want to know more?
+    repositories:
+      create:
+        success: Repository was successfully created!
+      edit:
+        title: Edit bulletin
+      index:
+        add: Add
+        title: Bulletins
+      new:
+        title: New bulletin
+      update:
+        success: Bulletin was successfully updated!
+  pundit:
+    not_authorized: You are not authorized to perform this action

@@ -1,0 +1,36 @@
+en:
+  activerecord:
+    events:
+      bulletin:
+        add: Add
+        archive: Archive
+        edit: Edit
+        publish: Publish
+        reject: Reject
+        show: Show
+        to_moderate: To moderate
+    models:
+      user: User
+      repository: repository
+    attributes:
+      category:
+        id: ID
+        name: Name
+      bulletin:
+        category: Category
+        created_at: Create date
+        description: Description
+        image: Image
+        title: Title
+        state: State
+        state/archived: Archived
+        state/draft: Draft
+        state/published: Published
+        state/rejected: Rejected
+        state/under_moderation: Under moderation
+      repository:
+        created_at: Create date
+        full_name: Full name
+        name: Title
+        language: Language
+        updated_at: Update date

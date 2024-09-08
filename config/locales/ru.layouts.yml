@@ -1,0 +1,20 @@
+ru:
+  layouts:
+    hexlet_title: © Хекслет, %{year}
+    hexlet_logo: Хекслет
+    web:
+      admin:
+        application:
+          all_bulletins: Все объявления
+          categories: Категории
+          under_moderation: Объявления на модерации
+      application:
+        title: Hexlet Github Quality
+      non_authenticated: Действие доступно только зарегистрированным пользователям
+      shared:
+        nav:
+          administration: Админка
+          home_link: Главная
+          main: Главная
+          sign_in: Войти с помощью Github
+          sign_out: Выйти

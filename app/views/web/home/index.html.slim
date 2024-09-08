@@ -1,0 +1,12 @@
+h2.fw-bold
+  = t('.title')
+p
+  = t('.text')
+
+p
+  - (1..4).each do |number|
+    = image_tag asset_path("about#{number}.png"), loading: 'lazy', alt: t('layouts.web.application.title'),
+            class: 'px-2 px-md-3 px-lg-4 px-xl-5 img-fluid'
+
+= link_to t('.link'), 'https://ru.hexlet.io/programs/rails/projects/66',
+        class: 'btn btn-primary btn-lg px-4 mt-3 fw-bold'

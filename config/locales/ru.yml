@@ -1,0 +1,27 @@
+---
+ru:
+  date:
+    month_names:
+    -
+    - января
+    - февраля
+    - марта
+    - апреля
+    - мая
+    - июня
+    - июля
+    - августя
+    - сентября
+    - октября
+    - ноября
+    - декабря
+  time:
+    formats:
+      default: "%d %B %Y, %H:%M"
+  views:
+    pagination:
+      first: ''
+      last: ''
+      next: ''
+      previous: ''
+      truncate: "&hellip;"

@@ -1,0 +1,20 @@
+ru:
+  simple_form:
+    error_notification:
+      default_message: 'Пожалуйста, ознакомьтесь с проблемами ниже:'
+    hints:
+      q:
+        category_id_eq: Выбрать категорию
+        state_eq: Искать по состоянию объявления
+        title_cont: Искать по названию объявления
+    placeholders:
+      q:
+        category_id_eq: ''
+        state_eq: ''
+        title_cont: ''
+    required:
+      text: Поле обязательно для заполнения
+    labels:
+      repository:
+        github_id: Github
+        full_name: Github

@@ -1,0 +1,20 @@
+en:
+  layouts:
+    hexlet_title: © Hexlet, %{year}
+    hexlet_logo: Hexlet
+    web:
+      admin:
+        application:
+          all_bulletins: All bulletins
+          categories: Categories
+          under_moderation: Under moderation
+      application:
+        title: Hexlet Github Quality
+      non_authenticated: The action is available only to authenticated users
+      shared:
+        nav:
+          administration: Administration
+          home_link: Main
+          main: Main
+          sign_in: Sign in with Github
+          sign_out: Sign out
