@@ -1,19 +1,13 @@
 ru:
   actions:
     add: Добавить
-    archive: В архив
-    archive_confirmation: Вы подтверждаете архивацию?
-    edit: Редактировать
-    delete: Удалить
-    delete_confirmation: Вы подтверждаете удаление?
-    publish: Опубликовать
-    reject: Отклонить
-    show: Показать
-    title: Действия
-    to_moderate: На модерацию
-  search:
-    reset: Сброс
-    go: Поиск
+    check: Проверить
+  pagination:
+    first: ''
+    last: ''
+    next: ''
+    previous: ''
+    truncate: "&hellip;"
   web:
     auth:
       callback:
@@ -31,11 +25,22 @@ ru:
       edit:
         title: Редактировать объявление
       index:
-        add: Добавить
+        last_check: Статус последней проверки
+        not_checked: Нет завершенных проверок
         title: Репозитории
       new:
-        title: Добавить объявление
+        list_error: Пожалуйста, выберите репозиторий из списка
       update:
         success: Объявление успешно обновлено!
+      checks:
+        create:
+          success: Проверка запущена!
+          error: Ошибка запуска проверки!
+        show:
+          back: Перейти к репозиторию
+          check: Проверка
+          location: Строка и символ
+          message: Сообщение
+          rule: Идентификатор правила
   pundit:
     not_authorized: У вас нет прав на выполнение этого действия

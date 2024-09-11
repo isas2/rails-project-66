@@ -18,10 +18,10 @@ en:
   time:
     formats:
       default: "%d %B %Y, %H:%M"
-  views:
-    pagination:
-      first: ''
-      last: ''
-      next: ''
-      previous: ''
-      truncate: "&hellip;"
+      short: "%d %b, %H:%M"
+  jobs:
+    clone:
+      clone: Clone a repository
+      id: Get the commit number
+    check:
+      check: Check a repository

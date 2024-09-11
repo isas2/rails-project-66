@@ -1,0 +1,5 @@
+one:
+  commit_id: MyString1
+  result: false
+  output: MyText
+  repository: one

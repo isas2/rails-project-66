@@ -2,11 +2,10 @@
 
 module Web
   class RepositoriesController < ApplicationController
-    include GithubConcern
     before_action :authenticate_user!
 
     def index
-      @repositories = current_user.repositories
+      @repositories = current_user.repositories.includes(:checks).order(full_name: :asc)
     end
 
     def show
@@ -18,20 +17,17 @@ module Web
     end
 
     def create
-      repo_attrs = github_repo_info(repository_params['full_name'])
+      github = ApplicationContainer[:github_helper]
+      repo_attrs = github.repo_info(current_user, params[:repository][:full_name])
       @repository = current_user.repositories.build(repo_attrs)
 
       if @repository.save
-        redirect_to repository_url(@repository), notice: t('.success')
+        CheckCreator.new(@repository).create
+        redirect_to repositories_path, notice: t('.success')
       else
-        render :new, status: :unprocessable_entity
+        redirect_to new_repository_path,
+                    flash: { error: @repository.errors.full_messages.first }
       end
-    end
-
-    private
-
-    def repository_params
-      params.require(:repository).permit(:full_name)
     end
   end
 end

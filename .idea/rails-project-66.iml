@@ -28,6 +28,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="aasm (v5.5.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actioncable (v7.1.4, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailbox (v7.1.4, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v7.1.4, asdf: 3.2.2) [gem]" level="application" />
@@ -60,6 +61,7 @@
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.1.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v3.1.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.1, asdf: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dry-container (v0.11.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="enumerize (v2.8.1, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.9.1, asdf: 3.2.2) [gem]" level="application" />
@@ -103,6 +105,7 @@
     <orderEntry type="library" scope="PROVIDED" name="omniauth-github (v2.0.1, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.8.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-rails_csrf_protection (v1.0.1, asdf: 3.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="open3 (v0.2.1, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.26.3, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.4.2, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="popper_js (v2.11.8, asdf: 3.2.2) [gem]" level="application" />
@@ -173,6 +176,8 @@
   <component name="RailsGeneratorsCache">
     <option name="generators">
       <list>
+        <option value="aasm" />
+        <option value="active_record:aasm" />
         <option value="active_record:application_record" />
         <option value="active_record:multi_db" />
         <option value="application_record" />
@@ -191,6 +196,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="mongoid:aasm" />
+        <option value="nobrainer:aasm" />
         <option value="pundit:install" />
         <option value="pundit:policy" />
         <option value="resource" />
@@ -211,6 +218,8 @@
     </option>
     <option name="myGenerators">
       <list>
+        <option value="aasm" />
+        <option value="active_record:aasm" />
         <option value="active_record:application_record" />
         <option value="active_record:multi_db" />
         <option value="application_record" />
@@ -229,6 +238,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="mongoid:aasm" />
+        <option value="nobrainer:aasm" />
         <option value="pundit:install" />
         <option value="pundit:policy" />
         <option value="resource" />

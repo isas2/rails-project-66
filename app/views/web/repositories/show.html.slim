@@ -2,6 +2,10 @@
   h1
     = @repository.full_name
 
+= link_to t('actions.check'), repository_checks_path(@repository),
+        data: { turbo_method: :post },
+        class: 'btn btn-primary mb-4'
+
 p
   strong.me-2
     = Repository.human_attribute_name(:full_name)
@@ -18,3 +22,25 @@ p
   strong.me-2
     = Repository.human_attribute_name(:updated_at)
   =< l(@repository.updated_at, format: :default)
+
+hr
+table.table.table-striped
+  thead
+    tr
+      th scope='col'
+      th scope='col' = t('activerecord.attributes.repository/check.aasm_state')
+      th scope='col' = t('activerecord.attributes.repository/check.commit_id')
+      th scope='col' = "#{t('activerecord.attributes.repository/check.result')}?"
+      th scope='col' = t('activerecord.attributes.repository/check.created_at')
+  tbody
+  tbody
+    - @repository.checks.order(created_at: :desc).each do |check|
+      tr
+        td = link_to check.id, repository_check_path(@repository, check)
+        td = check.aasm.human_state
+        td
+          - if check.commit_id
+            = link_to check.commit_id, "https://github.com/#{@repository.full_name}/commit/#{check.commit_id}",
+                    target: '_blank', rel: 'noreferrer'
+        td = check.result
+        td = l(check.created_at, format: :short)

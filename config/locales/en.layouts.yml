@@ -13,7 +13,6 @@ en:
       non_authenticated: The action is available only to authenticated users
       shared:
         nav:
-          administration: Administration
           home_link: Main
           main: Main
           sign_in: Sign in with Github

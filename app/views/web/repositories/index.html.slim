@@ -1,7 +1,7 @@
 .mb-4
   h1
 
-= link_to t('.add'), new_repository_path,
+= link_to t('actions.add'), new_repository_path,
         class: 'btn btn-primary'
 
 table.table.table-striped.table-hover.mt-4
@@ -9,11 +9,16 @@ table.table.table-striped.table-hover.mt-4
     tr
       th scope='col' = t('activerecord.attributes.repository.name')
       th scope='col' = t('activerecord.attributes.repository.language')
-
+      th scope='col' = t('.last_check')
   tbody
+  tbody
+    - in_progress = %w[planed cloning checking]
     - @repositories.each do |repository|
       tr
+        td = link_to repository.name, repository_path(repository)
+        td = repository.language
         td
-          = link_to repository.name, repository_path(repository)
-        td
-          = repository.language
+          - if repository.checks.length == 1 && in_progress.include?(repository.checks.first.aasm_state)
+            = t('.not_checked')
+          - else
+            = repository.checks.last.result

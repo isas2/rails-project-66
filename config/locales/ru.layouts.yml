@@ -13,7 +13,6 @@ ru:
       non_authenticated: Действие доступно только зарегистрированным пользователям
       shared:
         nav:
-          administration: Админка
           home_link: Главная
           main: Главная
           sign_in: Войти с помощью Github

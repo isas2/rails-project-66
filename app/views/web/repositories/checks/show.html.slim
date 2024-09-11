@@ -1,0 +1,65 @@
+.mb-4
+  h1
+
+= link_to t('.back'), repository_path(@check.repository),
+        class: 'btn btn-primary mb-4'
+h1
+  = "#{t('.check')} ##{@check.id}"
+
+- if @check.finished?
+  - data = JSON.parse(@check.output)
+- repo_name = @check.repository.full_name
+
+table.table
+  tbody
+    tr
+      td = t('activerecord.attributes.repository/check.created_at')
+      td = l(@check.created_at, format: :default)
+    tr
+      td = t('activerecord.attributes.repository/check.aasm_state')
+      td = @check.aasm.human_state
+    tr
+      td = t('activerecord.attributes.repository/check.result')
+      td = @check.result
+    tr
+      td = t('activerecord.attributes.repository/check.offense')
+      td
+        - if data
+          = data['summary']['offense_count']
+    tr
+      td = t('activerecord.attributes.repository/check.commit_id')
+      td
+        - if @check.commit_id
+          = link_to @check.commit_id, "https://github.com/#{repo_name}/commit/#{@check.commit_id}",
+                  target: '_blank', rel: 'noreferrer'
+
+- if @check.failed?
+  table.table.table-hover.mb-5
+    thead
+      tr
+        th = t('.message')
+    tbody
+      tr
+        td = @check.output
+
+- if @check.finished? && !@check.result
+  - dir_length = "tmp/jobs/#{repo_name}/".length
+  table.table.table-hover.mb-5
+    thead
+      tr
+        th = t('.message')
+        th = t('.rule')
+        th = t('.location')
+    tbody
+      - data['files'].each do |file|
+        - if file['offenses'].count.positive?
+          tr
+            td colspan="3"
+              = link_to file['path'][dir_length..],
+                      "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file['path'][dir_length..]}",
+                      target: '_blank', rel: 'noreferrer'
+          - file['offenses'].each do |offense|
+            tr
+              td = offense['message']
+              td = offense['cop_name']
+              td = "#{offense['location']['start_line']}:#{offense['location']['start_column']}"

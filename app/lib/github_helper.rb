@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
-require 'json'
-
-module GithubConcern
-  extend ActiveSupport::Concern
-
-  def self.included(base)
-    base.helper_method :github_repo_list
-  end
-
-  def github_repo_info(link)
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+class GithubHelper
+  def repo_info(user, link)
+    client = Octokit::Client.new access_token: user.token, auto_paginate: true
     repo = Octokit::Repository.from_url("/#{link}")
     data = client.repository(repo)
     {
@@ -23,8 +15,8 @@ module GithubConcern
     }
   end
 
-  def github_repo_list
-    client = Octokit::Client.new access_token: current_user.token, auto_paginate: true
+  def repo_list(user)
+    client = Octokit::Client.new access_token: user.token, auto_paginate: true
     repos = client.repos.select do |repo|
       Repository.language.value?(repo.language)
     end

@@ -1,19 +1,13 @@
 en:
   actions:
     add: Add
-    archive: Archive
-    archive_confirmation: Confirm archive
-    edit: Edit
-    delete: Delete
-    delete_confirmation: Confirm delete
-    publish: Publish
-    reject: Reject
-    show: Show
-    title: Actions
-    to_moderate: To moderate
-  search:
-    reset: Reset
-    go: Search
+    check: Check
+  pagination:
+    first: ''
+    last: ''
+    next: ''
+    previous: ''
+    truncate: "&hellip;"
   web:
     auth:
       callback:
@@ -31,11 +25,22 @@ en:
       edit:
         title: Edit bulletin
       index:
-        add: Add
+        last_check: Last check status
+        not_checked: No completed checks
         title: Bulletins
       new:
-        title: New bulletin
+        list_error: Please select an item in the list
       update:
         success: Bulletin was successfully updated!
+      checks:
+        create:
+          success: Check started!
+          error: Error starting check!
+        show:
+          back: Back to repository
+          check: Check
+          location: String and position
+          message: Message
+          rule: Rule ID
   pundit:
     not_authorized: You are not authorized to perform this action

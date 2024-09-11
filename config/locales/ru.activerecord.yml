@@ -1,36 +1,30 @@
 ru:
   activerecord:
-    events:
-      bulletin:
-        add: Добавить
-        archive: В архив
-        edit: Редактировать
-        publish: Опубликовать
-        reject: Отменить
-        show: Показать
-        to_moderate: Отправить на модерацию
-    models:
-      user: Пользователь
-      repository: репозиторий
     attributes:
-      category:
-        id: ID
-        name: Название
-      bulletin:
-        category: Категория
+      repository/check:
+        aasm_state: Статус
+        aasm_state/planed: Запланирована
+        aasm_state/cloning: Клонирование
+        aasm_state/checking: Проверка
+        aasm_state/failed: Сбой
+        aasm_state/finished: Завершена
+        commit_id: ID коммита
         created_at: Дата создания
-        description: Описание
-        image: Изображение
-        title: Заголовок
-        state: Состояние
-        state/archived: В архиве
-        state/draft: Черновик
-        state/published: Опубликовано
-        state/rejected: Возвращено
-        state/under_moderation: На модерации
+        offense: Количество замечаний
+        result: Проверка пройдена
       repository:
         created_at: Дата создания
         full_name: Название
-        name: Название
+        github_id: Репозиторий Github
         language: Язык
+        name: Название
         updated_at: Дата обновления
+    errors:
+      models:
+        repository:
+          attributes:
+            github_id:
+              taken: уже добавлен в Ваш проект!
+    models:
+      user: Пользователь
+      repository: репозиторий

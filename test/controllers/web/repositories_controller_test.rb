@@ -19,26 +19,15 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get new' do
-    stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
-      .to_return(status: 200,
-                 body: load_fixture('files/resp_repo_list.json'),
-                 headers: { 'Content-Type' => 'application/json' })
-
     get new_repository_url
     assert_response :success
   end
 
   test 'should create repository' do
     repo_name = 'isas2/hexlet-assignments'
-    stub_request(:get, "https://api.github.com/repos/#{repo_name}")
-      .to_return(status: 200,
-                 body: load_fixture('files/resp_repo_info.json'),
-                 headers: { 'Content-Type' => 'application/json' })
-
     assert_difference('Repository.count') do
       post repositories_url, params: { repository: { full_name: repo_name } }
     end
-    repository = Repository.last
-    assert_equal repository.name, 'Hello-World'
+    assert_equal Repository.last.name, 'Hello-World'
   end
 end

@@ -18,10 +18,10 @@ ru:
   time:
     formats:
       default: "%d %B %Y, %H:%M"
-  views:
-    pagination:
-      first: ''
-      last: ''
-      next: ''
-      previous: ''
-      truncate: "&hellip;"
+      short: "%d %b, %H:%M"
+  jobs:
+    clone:
+      clone: Клонирование репозитория
+      id: Получение номера коммита
+    check:
+      check: Проверка репозитория
