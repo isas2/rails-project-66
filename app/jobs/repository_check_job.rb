@@ -5,12 +5,13 @@ class RepositoryCheckJob < ApplicationJob
 
   def perform(check)
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
-    commands = [
-      { title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }
-    ]
+    commands = {
+      Ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }],
+      JavaScript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} --format json" }]
+    }
 
     commander = ApplicationContainer[:command_helper]
-    stdout, stderr, exit_status = commander.execute(commands)
+    stdout, stderr, exit_status = commander.execute(commands[check.repository.language.to_sym])
 
     if exit_status > 1
       check.output = stderr
@@ -18,7 +19,11 @@ class RepositoryCheckJob < ApplicationJob
     else
       check.output = stdout
       data = JSON.parse(stdout)
-      check.result = data['summary']['offense_count'].zero?
+      check.result = if check.repository.language == 'Ruby'
+                       data['summary']['offense_count'].zero?
+                     else
+                       data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] }.zero?
+                     end
       check.finish!
     end
     FileUtils.rm_rf(tmp_dir)
