@@ -1,0 +1,2 @@
+class CheckMailer < ApplicationMailer
+end

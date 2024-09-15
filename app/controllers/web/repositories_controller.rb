@@ -17,12 +17,12 @@ module Web
     end
 
     def create
-      github = ApplicationContainer[:github_helper]
-      repo_attrs = github.repo_info(current_user, params[:repository][:full_name])
+      github = ApplicationContainer[:github_helper].new(current_user)
+      repo_attrs = github.repo_info(params[:repository][:full_name])
       @repository = current_user.repositories.build(repo_attrs)
 
       if @repository.save
-        CheckCreator.new(@repository).create
+        github.new_repo_hook(@repository)
         redirect_to repositories_path, notice: t('.success')
       else
         redirect_to new_repository_path,

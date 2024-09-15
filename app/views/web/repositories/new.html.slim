@@ -1,12 +1,12 @@
 .mb-4
   h1
 
-- github = ApplicationContainer[:github_helper]
+- github = ApplicationContainer[:github_helper].new(current_user)
 
 = simple_form_for(@repository) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :full_name, hint: false, collection: github.repo_list(current_user),
+  = f.input :full_name, hint: false, collection: github.repo_list,
           input_html: { oninvalid: "this.setCustomValidity('#{t('.list_error')}')", oninput: "setCustomValidity('')" }
   = f.button :submit, class: 'btn btn-success'

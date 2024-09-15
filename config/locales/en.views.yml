@@ -42,5 +42,3 @@ en:
           location: String and position
           message: Message
           rule: Rule ID
-  pundit:
-    not_authorized: You are not authorized to perform this action

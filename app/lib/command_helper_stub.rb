@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommandHelperStub
-  def execute(_)
-    ['', 'Test', 2]
+  def execute(*)
+    ['{"summary":{"offense_count":0}}', '', 0]
   end
 end

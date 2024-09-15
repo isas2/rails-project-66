@@ -18,7 +18,7 @@ table.table.table-striped.table-hover.mt-4
         td = link_to repository.name, repository_path(repository)
         td = repository.language
         td
-          - if repository.checks.length == 1 && in_progress.include?(repository.checks.first.aasm_state)
+          - if repository.checks.empty? || (repository.checks.length == 1 && in_progress.include?(repository.checks.first.aasm_state))
             = t('.not_checked')
           - else
             = repository.checks.last.result
