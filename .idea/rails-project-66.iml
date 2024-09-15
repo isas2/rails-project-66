@@ -130,7 +130,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.7.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.9.2, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.5.9, asdf: 3.2.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="responders (v3.1.1, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.3.7, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.66.0, asdf: 3.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.32.2, asdf: 3.2.2) [gem]" level="application" />

@@ -1,4 +1,8 @@
-# Preview all emails at http://localhost:3000/rails/mailers/check_mailer
-class CheckMailerPreview < ActionMailer::Preview
+# frozen_string_literal: true
 
+class CheckMailerPreview < ActionMailer::Preview
+  def check_error_email
+    check = Repository::Check.last
+    CheckMailer.with(check:).check_error_email
+  end
 end

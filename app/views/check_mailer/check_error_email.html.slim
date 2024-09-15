@@ -1,0 +1,22 @@
+h2
+  = t('.title')
+p
+  = t('.about')
+
+table
+  tbody
+    tr
+      td = t('.repo_link')
+      td
+        = link_to nil, "https://github.com/#{@check.repository.full_name}"
+    tr
+      td = t('.service_link')
+      td
+        = link_to nil, repository_check_url(@check.repository, @check)
+    tr
+      td = t('.message')
+      td
+        - if @check.failed?
+          = @check.output
+        - else
+          = t('.error')

@@ -23,10 +23,12 @@ class Repository::Check < ApplicationRecord
     end
 
     event :finish do
+      after { CheckMailer.with(check: self).check_error_email.deliver_now unless result }
       transitions from: :checking, to: :finished
     end
 
     event :fall do
+      after { CheckMailer.with(check: self).check_error_email.deliver_now }
       transitions from: %i[checking cloning], to: :failed
     end
   end

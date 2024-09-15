@@ -1,0 +1,17 @@
+<%= t('.title') %>
+===========================
+
+<%= t('.about') %>
+
+<%= t('.repo_link') %>:
+<%= "https://github.com/#{@check.repository.full_name}" %>
+
+<%= t('.service_link') %>:
+<%= repository_check_url(@check.repository, @check) %>
+
+<%= t('.message') %>:
+<% if @check.failed? %>
+<%= @check.output %>
+<% else %>
+<%= t('.error') %>
+<% end %>

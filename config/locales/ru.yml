@@ -1,5 +1,13 @@
 ---
 ru:
+  check_mailer:
+    check_error_email:
+      about: Вы получили данное сообщение, потому-что во время проверки Вашего репозитория обнаружены ошибки.
+      error: В ходе проверки обнаружено несколько проблем
+      message: Описание
+      repo_link: Репозиторий
+      service_link: Сервис проверки
+      title: Ошибка проверки репозитория
   date:
     month_names:
     -
@@ -15,13 +23,13 @@ ru:
     - октября
     - ноября
     - декабря
-  time:
-    formats:
-      default: "%d %B %Y, %H:%M"
-      short: "%d %b, %H:%M"
   jobs:
     clone:
       clone: Клонирование репозитория
       id: Получение номера коммита
     check:
       check: Проверка репозитория
+  time:
+    formats:
+      default: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"

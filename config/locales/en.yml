@@ -1,5 +1,13 @@
 ---
 en:
+  check_mailer:
+    check_error_email:
+      about: You received this message because errors were found while checking your repository.
+      error: Several issues were found during the check
+      message: Description
+      repo_link: Repository
+      service_link: Repository check
+      title: Repository check error
   date:
     month_names:
     -
@@ -15,13 +23,13 @@ en:
     - October
     - November
     - December
-  time:
-    formats:
-      default: "%d %B %Y, %H:%M"
-      short: "%d %b, %H:%M"
   jobs:
     clone:
       clone: Clone a repository
       id: Get the commit number
     check:
       check: Check a repository
+  time:
+    formats:
+      default: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
