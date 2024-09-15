@@ -28,6 +28,6 @@ module RailsProject66
     config.i18n.default_locale = :ru
     config.i18n.available_locales = %i[en ru]
 
-    routes.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
+    routes.default_url_options = { host: ENV.fetch('BASE_URL', 'localhost:3000') }
   end
 end
