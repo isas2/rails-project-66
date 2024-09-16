@@ -1,5 +1,5 @@
 one:
   commit_id: MyString1
-  result: false
+  passed: false
   output: MyText
   repository: one
