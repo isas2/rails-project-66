@@ -2,12 +2,6 @@ ru:
   actions:
     add: Добавить
     check: Проверить
-  pagination:
-    first: ''
-    last: ''
-    next: ''
-    previous: ''
-    truncate: "&hellip;"
   web:
     auth:
       callback:
@@ -22,16 +16,12 @@ ru:
     repositories:
       create:
         success: Репозиторий успешно создан!
-      edit:
-        title: Редактировать объявление
       index:
         last_check: Статус последней проверки
         not_checked: Нет завершенных проверок
         title: Репозитории
       new:
         list_error: Пожалуйста, выберите репозиторий из списка
-      update:
-        success: Объявление успешно обновлено!
       checks:
         create:
           success: Проверка запущена!

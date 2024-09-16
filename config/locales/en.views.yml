@@ -2,12 +2,6 @@ en:
   actions:
     add: Add
     check: Check
-  pagination:
-    first: ''
-    last: ''
-    next: ''
-    previous: ''
-    truncate: "&hellip;"
   web:
     auth:
       callback:
@@ -22,16 +16,12 @@ en:
     repositories:
       create:
         success: Repository was successfully created!
-      edit:
-        title: Edit bulletin
       index:
         last_check: Last check status
         not_checked: No completed checks
-        title: Bulletins
+        title: Repositories
       new:
         list_error: Please select an item in the list
-      update:
-        success: Bulletin was successfully updated!
       checks:
         create:
           success: Check started!
