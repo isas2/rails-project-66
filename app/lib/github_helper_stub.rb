@@ -3,7 +3,7 @@
 class GithubHelperStub
   def initialize(*); end
 
-  def repo_info(_repo)
+  def repo_info(_id)
     JSON.parse(Rails.root.join('test/fixtures/files/repo_info.json').read)
   end
 

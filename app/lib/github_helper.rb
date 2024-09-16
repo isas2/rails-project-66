@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class GithubHelper
-  include Rails.application.routes.url_helpers
   attr_reader :client
 
   def initialize(user)
     @client = Octokit::Client.new access_token: user.token, auto_paginate: true
   end
 
-  def repo_info(link)
-    repo = Octokit::Repository.from_url("/#{link}")
-    data = client.repository(repo)
+  def repo_info(id)
+    data = client.repo(id.to_i)
     {
       name: data[:name],
       github_id: data[:id].to_s,
@@ -26,7 +24,7 @@ class GithubHelper
       repos = client.repos.select do |repo|
         repo.language && Repository.language.value?(repo.language.downcase)
       end
-      repos.map(&:full_name).sort
+      repos.map { |repo| [repo.full_name, repo.id] }.sort
     end
   end
 
@@ -35,13 +33,9 @@ class GithubHelper
       repo.full_name,
       'web',
       {
-        url: api_checks_url,
+        url: Rails.application.routes.url_helpers.api_checks_url,
         content_type: 'json',
         secret: ENV.fetch('GITHUB_WEBHOOK_SECRET', nil)
-      },
-      {
-        events: ['push'],
-        active: true
       }
     )
   end

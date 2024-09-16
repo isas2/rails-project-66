@@ -24,9 +24,8 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create repository' do
-    repo_name = 'isas2/hexlet-assignments'
     assert_difference('Repository.count') do
-      post repositories_url, params: { repository: { full_name: repo_name } }
+      post repositories_url, params: { repository: { github_id: '1296269' } }
     end
     assert_equal Repository.last.name, 'Hello-World'
   end

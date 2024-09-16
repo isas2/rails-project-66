@@ -18,7 +18,7 @@ module Web
 
     def create
       github = ApplicationContainer[:github_helper].new(current_user)
-      repo_attrs = github.repo_info(params[:repository][:full_name])
+      repo_attrs = github.repo_info(params[:repository][:github_id])
       @repository = current_user.repositories.build(repo_attrs)
 
       if @repository.save

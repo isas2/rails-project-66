@@ -1,4 +1,4 @@
 [
-  "octocat/Hello-World",
-  "octocat/Spoon-Knife"
+  ["octocat/Hello-World", "1"],
+  ["octocat/Spoon-Knife", "2"]
 ]
