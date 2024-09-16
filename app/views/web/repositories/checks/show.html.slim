@@ -6,7 +6,7 @@
 h1
   = "#{t('.check')} ##{@check.id}"
 
-- if @check.finished?
+- if @check.finished? && @check.output
   - data = JSON.parse(@check.output)
 - repo_name = @check.repository.full_name
 - ruby = @check.repository.language == 'ruby'
@@ -55,30 +55,31 @@ table.table
         th = t('.rule')
         th = t('.location')
     tbody
-      - if ruby
-        - data['files'].each do |file|
-          - if file['offenses'].count.positive?
-            tr
-              td colspan="3"
-                = link_to file['path'][dir_length..],
-                        "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file['path'][dir_length..]}",
-                        target: '_blank', rel: 'noreferrer'
-            - file['offenses'].each do |offense|
+      - if data
+        - if ruby
+          - data['files'].each do |file|
+            - if file['offenses'].count.positive?
               tr
-                td = offense['message']
-                td = offense['cop_name']
-                td = "#{offense['location']['start_line']}:#{offense['location']['start_column']}"
-      - else
-        - data.each do |file|
-          - if file['messages'].count.positive?
-            tr
-              td colspan="3"
-                - file_path = file['filePath'].split("#{repo_name}/")[1]
-                = link_to file_path,
-                        "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file_path}",
-                        target: '_blank', rel: 'noreferrer'
-            - file['messages'].each do |offense|
+                td colspan="3"
+                  = link_to file['path'][dir_length..],
+                          "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file['path'][dir_length..]}",
+                          target: '_blank', rel: 'noreferrer'
+              - file['offenses'].each do |offense|
+                tr
+                  td = offense['message']
+                  td = offense['cop_name']
+                  td = "#{offense['location']['start_line']}:#{offense['location']['start_column']}"
+        - else
+          - data.each do |file|
+            - if file['messages'].count.positive?
               tr
-                td = offense['message']
-                td = offense['ruleId']
-                td = "#{offense['line']}:#{offense['column']}"
+                td colspan="3"
+                  - file_path = file['filePath'].split("#{repo_name}/")[1]
+                  = link_to file_path,
+                          "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file_path}",
+                          target: '_blank', rel: 'noreferrer'
+              - file['messages'].each do |offense|
+                tr
+                  td = offense['message']
+                  td = offense['ruleId']
+                  td = "#{offense['line']}:#{offense['column']}"

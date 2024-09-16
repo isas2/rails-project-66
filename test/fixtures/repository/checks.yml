@@ -1,5 +1,5 @@
 one:
   commit_id: MyString1
-  passed: false
-  output: MyText
+  passed: true
+  output: '{"summary":{"offense_count":0}}'
   repository: one
