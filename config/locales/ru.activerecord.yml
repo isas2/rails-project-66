@@ -11,7 +11,7 @@ ru:
         commit_id: ID коммита
         created_at: Дата создания
         offense: Количество замечаний
-        result: Проверка пройдена
+        passed: Проверка пройдена
       repository:
         created_at: Дата создания
         full_name: Название

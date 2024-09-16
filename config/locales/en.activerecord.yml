@@ -11,7 +11,7 @@ en:
         commit_id: Commit ID
         created_at: Create date
         offense: Offenses count
-        result: Check passed
+        passed: Check passed
       repository:
         created_at: Create date
         full_name: Full name

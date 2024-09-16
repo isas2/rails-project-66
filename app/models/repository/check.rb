@@ -23,7 +23,7 @@ class Repository::Check < ApplicationRecord
     end
 
     event :finish do
-      after { CheckMailer.with(check: self).check_error_email.deliver_now unless result }
+      after { CheckMailer.with(check: self).check_error_email.deliver_now unless passed }
       transitions from: :checking, to: :finished
     end
 

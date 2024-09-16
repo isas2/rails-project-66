@@ -20,8 +20,8 @@ table.table
       td = t('activerecord.attributes.repository/check.aasm_state')
       td = @check.aasm.human_state
     tr
-      td = t('activerecord.attributes.repository/check.result')
-      td = @check.result
+      td = t('activerecord.attributes.repository/check.passed')
+      td = @check.passed
     tr
       td = t('activerecord.attributes.repository/check.offense')
       td
@@ -46,7 +46,7 @@ table.table
       tr
         td = @check.output
 
-- if @check.finished? && !@check.result
+- if @check.finished? && !@check.passed
   - dir_length = "tmp/jobs/#{repo_name}/".length
   table.table.table-hover.mb-5
     thead

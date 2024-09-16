@@ -21,4 +21,4 @@ table.table.table-striped.table-hover.mt-4
           - if repository.checks.empty? || (repository.checks.length == 1 && in_progress.include?(repository.checks.first.aasm_state))
             = t('.not_checked')
           - else
-            = repository.checks.last.result
+            = repository.checks.last.passed

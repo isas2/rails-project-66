@@ -13,6 +13,6 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_equal repo.checks.last.result, true
+    assert_equal repo.checks.last.passed, true
   end
 end

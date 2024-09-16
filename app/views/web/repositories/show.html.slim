@@ -30,7 +30,7 @@ table.table.table-striped
       th scope='col'
       th scope='col' = t('activerecord.attributes.repository/check.aasm_state')
       th scope='col' = t('activerecord.attributes.repository/check.commit_id')
-      th scope='col' = "#{t('activerecord.attributes.repository/check.result')}?"
+      th scope='col' = "#{t('activerecord.attributes.repository/check.passed')}?"
       th scope='col' = t('activerecord.attributes.repository/check.created_at')
   tbody
   tbody
@@ -42,5 +42,5 @@ table.table.table-striped
           - if check.commit_id
             = link_to check.commit_id, "https://github.com/#{@repository.full_name}/commit/#{check.commit_id}",
                     target: '_blank', rel: 'noreferrer'
-        td = check.result
+        td = check.passed
         td = l(check.created_at, format: :short)
