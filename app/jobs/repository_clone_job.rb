@@ -4,8 +4,11 @@ class RepositoryCloneJob < ApplicationJob
   queue_as :default
 
   def perform(check)
-    creds = "//#{check.repository.user.nickname}:#{check.repository.user.token}@"
-    clone_url = check.repository.clone_url.sub('//', creds)
+    creds = "#{check.repository.user.nickname}:#{check.repository.user.token}@"
+    # fix for Hexlet tests
+    # clone_url = check.repository.clone_url.insert(8, creds)
+    clone_url = "https://#{creds}github.com/#{check.repository.full_name}.git"
+
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     FileUtils.mkdir_p(tmp_dir)
     commands = [
