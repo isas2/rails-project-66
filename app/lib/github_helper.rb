@@ -13,9 +13,9 @@ class GithubHelper
     data = client.repository(repo)
     {
       name: data[:name],
-      github_id: data[:id],
+      github_id: data[:id].to_s,
       full_name: data[:full_name],
-      language: data[:language],
+      language: data[:language].downcase,
       clone_url: data[:clone_url],
       ssh_url: data[:ssh_url]
     }
@@ -23,7 +23,9 @@ class GithubHelper
 
   def repo_list
     Rails.cache.fetch('github_repo_list', expires_in: 30.minutes) do
-      repos = client.repos.select { |repo| Repository.language.value?(repo.language) }
+      repos = client.repos.select do |repo|
+        repo.language && Repository.language.value?(repo.language.downcase)
+      end
       repos.map(&:full_name).sort
     end
   end
@@ -34,7 +36,8 @@ class GithubHelper
       'web',
       {
         url: api_checks_url,
-        content_type: 'json'
+        content_type: 'json',
+        secret: ENV.fetch('GITHUB_WEBHOOK_SECRET', nil)
       },
       {
         events: ['push'],

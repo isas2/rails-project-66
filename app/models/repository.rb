@@ -12,5 +12,5 @@ class Repository < ApplicationRecord
   validates :clone_url, presence: true
   validates :ssh_url, presence: true
 
-  enumerize :language, in: %i[JavaScript Ruby]
+  enumerize :language, in: %i[javascript ruby]
 end

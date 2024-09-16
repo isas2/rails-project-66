@@ -6,8 +6,8 @@ class RepositoryCheckJob < ApplicationJob
   def perform(check)
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     commands = {
-      Ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }],
-      JavaScript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} --format json" }]
+      ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }],
+      javascript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} --format json" }]
     }
 
     commander = ApplicationContainer[:command_helper]
@@ -19,7 +19,7 @@ class RepositoryCheckJob < ApplicationJob
     else
       check.output = stdout
       data = JSON.parse(stdout)
-      check.passed = if check.repository.language == 'Ruby'
+      check.passed = if check.repository.language == 'ruby'
                        data['summary']['offense_count'].zero?
                      else
                        data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] }.zero?
