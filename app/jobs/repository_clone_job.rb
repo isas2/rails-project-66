@@ -3,7 +3,8 @@
 class RepositoryCloneJob < ApplicationJob
   queue_as :default
 
-  def perform(check)
+  def perform(check_id)
+    check = Repository::Check.find_by(id: check_id)
     creds = "#{check.repository.user.nickname}:#{check.repository.user.token}@"
     # fix for Hexlet tests
     # clone_url = check.repository.clone_url.insert(8, creds)

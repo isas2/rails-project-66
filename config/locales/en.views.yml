@@ -20,6 +20,7 @@ en:
         last_check: Last check status
         not_checked: No completed checks
         title: Repositories
+        unknown: "..."
       new:
         list_error: Please select an item in the list
       checks:

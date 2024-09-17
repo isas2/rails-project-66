@@ -17,16 +17,14 @@ module Web
     end
 
     def create
-      github = ApplicationContainer[:github_helper].new(current_user)
-      repo_attrs = github.repo_info(params[:repository][:github_id])
-      @repository = current_user.repositories.build(repo_attrs)
+      repository = current_user.repositories.build(github_id: params[:repository][:github_id])
 
-      if @repository.save
-        github.new_repo_hook(@repository)
+      if repository.save
+        RepositoryUpdateJob.perform_later(repository.id)
         redirect_to repositories_path, notice: t('.success')
       else
         redirect_to new_repository_path,
-                    flash: { error: @repository.errors.full_messages.first }
+                    flash: { error: repository.errors.full_messages.first }
       end
     end
   end

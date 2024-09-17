@@ -27,7 +27,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Repository.count') do
       post repositories_url, params: { repository: { github_id: '1296269' } }
     end
-    assert_equal Repository.last.name, 'Hello-World'
     assert_equal Repository.last.github_id, '1296269'
   end
 end

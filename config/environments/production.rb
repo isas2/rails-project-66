@@ -74,7 +74,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "rails_project_66_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: ENV.fetch('BASE_URL', nil), port: 3000 }
+  config.action_mailer.default_url_options = { host: ENV.fetch('BASE_URL', nil) }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name: ENV.fetch('MAIL_USERNAME', nil),

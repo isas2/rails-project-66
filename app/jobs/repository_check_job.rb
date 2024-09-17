@@ -3,8 +3,8 @@
 class RepositoryCheckJob < ApplicationJob
   queue_as :default
 
-  def perform(check)
-    check.reload
+  def perform(check_id)
+    check = Repository::Check.find_by(id: check_id)
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     commands = {
       ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }],

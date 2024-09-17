@@ -13,12 +13,12 @@ class Repository::Check < ApplicationRecord
     state :finished
 
     event :start do
-      after { RepositoryCloneJob.perform_later(self) }
+      after { RepositoryCloneJob.perform_later(id) }
       transitions from: :planed, to: :cloning
     end
 
     event :check do
-      after { RepositoryCheckJob.perform_later(self) }
+      after { RepositoryCheckJob.perform_later(id) }
       transitions from: :cloning, to: :checking
     end
 
