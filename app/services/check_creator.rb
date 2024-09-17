@@ -3,9 +3,6 @@
 class CheckCreator
   def initialize(repository)
     @repository = repository
-    pp "***** Debug start *****"
-    pp repository
-    pp "***** Debug end *****"
   end
 
   def create
