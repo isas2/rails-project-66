@@ -20,9 +20,9 @@ class RepositoryCheckJob < ApplicationJob
       check.output = stdout
       data = JSON.parse(stdout)
       check.passed = if check.repository.language == 'ruby'
-                       data['summary']['offense_count'].zero?
+                       (data['summary']['offense_count'] || 0).zero?
                      else
-                       data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] }.zero?
+                       (data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] } || 0).zero?
                      end
       check.finish!
     end

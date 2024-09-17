@@ -1,8 +1,6 @@
 one:
-  name: MyString
-  github_id: 1
-  full_name: MyUser/MyString
-  language: ruby
-  clone_url: https://github.com/MyUser/MyString.git
-  ssh_url: MyString
   user: one
+  name: one
+  full_name: Hexlet/hexlet-basics
+  language: javascript
+  github_id: 123

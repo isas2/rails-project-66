@@ -3,8 +3,9 @@
 class GithubHelperStub
   def initialize(*); end
 
-  def repo_info(_id)
-    JSON.parse(Rails.root.join('test/fixtures/files/repo_info.json').read)
+  def repo_info(github_id)
+    data = JSON.parse(Rails.root.join('test/fixtures/files/repo_info.json').read)
+    data.merge(github_id:)
   end
 
   def repo_list

@@ -1,5 +1,5 @@
 one:
-  commit_id: MyString1
-  passed: true
-  output: '{"summary":{"offense_count":0}}'
   repository: one
+  aasm_state: finished
+  passed: false
+  commit_id: '4e399ef91a79d45f75d266a4b5783abe8622b739'

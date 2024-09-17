@@ -7,8 +7,8 @@ class GithubHelper
     @client = Octokit::Client.new access_token: user.token, auto_paginate: true
   end
 
-  def repo_info(id)
-    data = client.repo(id.to_i)
+  def repo_info(github_id)
+    data = client.repo(github_id.to_i)
     {
       name: data[:name],
       github_id: data[:id].to_s,
