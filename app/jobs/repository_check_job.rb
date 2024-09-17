@@ -13,10 +13,6 @@ class RepositoryCheckJob < ApplicationJob
     commander = ApplicationContainer[:command_helper]
     stdout, stderr, exit_status = commander.execute(commands[check.repository.language.to_sym])
 
-    pp '***** Debug start *****'
-    pp stdout, stderr, exit_status
-    pp '***** Debug end *****'
-
     if exit_status > 1
       check.output = stderr
       check.fall!

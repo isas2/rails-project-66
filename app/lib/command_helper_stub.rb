@@ -2,6 +2,6 @@
 
 class CommandHelperStub
   def execute(*)
-    ['{}', '', 0]
+    ['{"summary":{"offense_count":0}}', '', 0]
   end
 end
