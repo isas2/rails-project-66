@@ -5,9 +5,11 @@ class ApplicationContainer
 
   if Rails.env.test?
     register(:command_helper, memoize: true) { CommandHelperStub.new }
-    register(:github_helper, memoize: true) { GithubHelperStub }
+    register(:security_helper, memoize: true) { SecurityHelperStub.new }
+    register(:octokit, memoize: true) { OctokitStub }
   else
     register(:command_helper, memoize: true) { CommandHelper.new }
-    register(:github_helper, memoize: true) { GithubHelper }
+    register(:security_helper, memoize: true) { SecurityHelper.new }
+    register(:octokit, memoize: true) { Octokit::Client }
   end
 end

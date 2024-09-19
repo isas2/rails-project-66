@@ -7,8 +7,8 @@ class RepositoryCheckJob < ApplicationJob
     check = Repository::Check.find_by(id: check_id)
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     commands = {
-      ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop #{tmp_dir} --format json" }],
-      javascript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} --format json" }]
+      ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop --config ./.rubocop.yml #{tmp_dir} --format json" }],
+      javascript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} -c eslint.config.js --format json" }]
     }
 
     commander = ApplicationContainer[:command_helper]

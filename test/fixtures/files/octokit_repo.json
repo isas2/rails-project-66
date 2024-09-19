@@ -1,8 +1,8 @@
 {
   "name": "Hello-World",
-  "github_id": "325",
+  "id": 325,
   "full_name": "octocat/Hello-World",
-  "language": "ruby",
+  "language": "Ruby",
   "clone_url": "https://github.com/octocat/Hello-World.git",
   "ssh_url": "git@github.com:octocat/Hello-World.git"
 }
