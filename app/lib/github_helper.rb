@@ -7,7 +7,7 @@ class GithubHelper
       name: data[:name],
       github_id: data[:id].to_s,
       full_name: data[:full_name],
-      language: data[:language].downcase,
+      language: data[:language]&.downcase,
       clone_url: data[:clone_url],
       ssh_url: data[:ssh_url]
     }
