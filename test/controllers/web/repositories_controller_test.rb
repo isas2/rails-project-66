@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
+  include ActiveJob::TestHelper
+
   setup do
     @repository = repositories(:one)
     sign_in users(:one)
@@ -27,6 +29,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Repository.count') do
       post repositories_url, params: { repository: { github_id: '1296269' } }
     end
+
     assert_equal Repository.last.github_id, '1296269'
   end
 end

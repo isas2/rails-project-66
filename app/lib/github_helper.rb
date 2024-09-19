@@ -4,7 +4,7 @@ class GithubHelper
   def repo_info(repo)
     data = client(repo.user).repo(repo.github_id.to_i)
     {
-      name: data[:name],
+      name: data['name'],
       github_id: data[:id].to_s,
       full_name: data[:full_name],
       language: data[:language]&.downcase,

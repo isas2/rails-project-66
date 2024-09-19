@@ -11,6 +11,6 @@ class OctokitStub
 
   def repo(id)
     data = JSON.parse(Rails.root.join('test/fixtures/files/octokit_repo.json').read)
-    data.merge(id:)
+    data.merge(id:).transform_keys(&:to_sym)
   end
 end
