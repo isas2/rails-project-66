@@ -6,11 +6,6 @@
 h1
   = "#{t('.check')} ##{@check.id}"
 
-- if @check.finished? && @check.output
-  - data = JSON.parse(@check.output)
-- repo_name = @check.repository.full_name
-- ruby = @check.repository.language == 'ruby'
-
 table.table
   tbody
     tr
@@ -24,17 +19,12 @@ table.table
       td = @check.passed
     tr
       td = t('activerecord.attributes.repository/check.offense')
-      td
-        - if data
-          - if ruby
-            = data['summary']['offense_count']
-          - else
-            = data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] }
+      td = @error_count
     tr
       td = t('activerecord.attributes.repository/check.commit_id')
       td
         - if @check.commit_id
-          = link_to @check.commit_id, "https://github.com/#{repo_name}/commit/#{@check.commit_id}",
+          = link_to @check.commit_id, GithubHelper.commit_link(@check),
                   target: '_blank', rel: 'noreferrer'
 
 - if @check.failed?
@@ -47,7 +37,6 @@ table.table
         td = @check.output
 
 - if @check.finished? && !@check.passed
-  - dir_length = "tmp/jobs/#{repo_name}/".length
   table.table.table-hover.mb-5
     thead
       tr
@@ -55,31 +44,13 @@ table.table
         th = t('.rule')
         th = t('.location')
     tbody
-      - if data
-        - if ruby
-          - data['files'].each do |file|
-            - if file['offenses'].count.positive?
-              tr
-                td colspan="3"
-                  = link_to file['path'][dir_length..],
-                          "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file['path'][dir_length..]}",
-                          target: '_blank', rel: 'noreferrer'
-              - file['offenses'].each do |offense|
-                tr
-                  td = offense['message']
-                  td = offense['cop_name']
-                  td = "#{offense['location']['start_line']}:#{offense['location']['start_column']}"
-        - else
-          - data.each do |file|
-            - if file['messages'].count.positive?
-              tr
-                td colspan="3"
-                  - file_path = file['filePath'].split("#{repo_name}/")[1]
-                  = link_to file_path,
-                          "https://github.com/#{repo_name}/tree/#{@check.commit_id}/#{file_path}",
-                          target: '_blank', rel: 'noreferrer'
-              - file['messages'].each do |offense|
-                tr
-                  td = offense['message']
-                  td = offense['ruleId']
-                  td = "#{offense['line']}:#{offense['column']}"
+      - @error_report.each do |file|
+        tr
+          td colspan="3"
+            = link_to file[:path], GithubHelper.file_link(@check, file[:path]),
+                    target: '_blank', rel: 'noreferrer'
+        - file[:offenses].each do |offense|
+          tr
+            td = offense[0]
+            td = offense[1]
+            td = offense[2]

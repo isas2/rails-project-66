@@ -3,8 +3,6 @@
 require 'test_helper'
 
 class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
-  include ActiveJob::TestHelper
-
   setup do
     @repository = repositories(:one)
     sign_in users(:one)

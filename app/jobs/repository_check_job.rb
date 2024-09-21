@@ -7,26 +7,35 @@ class RepositoryCheckJob < ApplicationJob
     check = Repository::Check.find_by(id: check_id)
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     commands = {
-      ruby: [{ title: I18n.t('jobs.check.check'), cmd: "bundle exec rubocop --config ./.rubocop.yml #{tmp_dir} --format json" }],
-      javascript: [{ title: I18n.t('jobs.check.check'), cmd: "npx --no-eslintrc eslint #{tmp_dir} -c eslint.config.js --format json" }]
+      ruby: [
+        { title: I18n.t('jobs.check.check'),
+          cmd: "bundle exec rubocop --config ./.rubocop.yml #{tmp_dir} --format json",
+          stub: '{"summary":{"offense_count":0}}' }
+      ],
+      javascript: [
+        { title: I18n.t('jobs.check.check'),
+          cmd: "npx --no-eslintrc eslint #{tmp_dir} -c eslint.config.js --format json",
+          stub: '[{"errorCount":0,"warningCount":0}]' }
+      ]
     }
 
     commander = ApplicationContainer[:command_helper]
-    stdout, stderr, exit_status = commander.execute(commands[check.repository.language.to_sym])
+    begin
+      stdout, stderr, exit_status = commander.execute(commands[check.repository.language.to_sym])
 
-    if exit_status > 1
-      check.output = stderr
+      if exit_status > 1
+        check.output = stderr
+        check.fall!
+      else
+        check.output = stdout
+        check.passed = CheckReportHelper.passed?(check)
+        check.finish!
+      end
+      FileUtils.rm_rf(tmp_dir)
+    rescue StandardError => e
+      check.output = e
+      FileUtils.rm_rf(tmp_dir)
       check.fall!
-    else
-      check.output = stdout
-      data = JSON.parse(stdout)
-      check.passed = if check.repository.language == 'ruby'
-                       (data['summary']['offense_count'] || 0).zero?
-                     else
-                       (data.inject(0) { |sum, f| sum + f['errorCount'] + f['fatalErrorCount'] + f['warningCount'] } || 0).zero?
-                     end
-      check.finish!
     end
-    FileUtils.rm_rf(tmp_dir)
   end
 end

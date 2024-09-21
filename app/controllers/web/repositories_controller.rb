@@ -17,14 +17,13 @@ module Web
     end
 
     def create
-      repository = current_user.repositories.build(github_id: params[:repository][:github_id])
+      @repository = current_user.repositories.build(github_id: params[:repository][:github_id])
 
-      if repository.save
-        RepositoryUpdateJob.perform_later(repository.id)
+      if @repository.save
+        RepositoryUpdateJob.perform_later(@repository.id)
         redirect_to repositories_path, notice: t('.success')
       else
-        redirect_to new_repository_path,
-                    flash: { error: repository.errors.full_messages.first }
+        render :new, status: :unprocessable_entity
       end
     end
   end

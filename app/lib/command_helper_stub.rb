@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommandHelperStub
-  def execute(*)
-    ['{"summary":{"offense_count":0}}', '', 0]
+  def execute(commands)
+    [commands.last[:stub], '', 0]
   end
 end

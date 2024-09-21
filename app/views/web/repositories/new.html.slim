@@ -5,6 +5,6 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.input :github_id, hint: false, collection: GithubHelper.new.repo_list(current_user),
+  = f.input :github_id, hint: false, collection: GithubHelper.new(current_user).repo_list,
           input_html: { oninvalid: "this.setCustomValidity('#{t('.list_error')}')", oninput: "setCustomValidity('')" }
   = f.button :submit, class: 'btn btn-success'

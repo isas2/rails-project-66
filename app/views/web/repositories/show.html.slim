@@ -40,7 +40,7 @@ table.table.table-striped
         td = check.aasm.human_state
         td
           - if check.commit_id
-            = link_to check.commit_id, "https://github.com/#{@repository.full_name}/commit/#{check.commit_id}",
+            = link_to check.commit_id, GithubHelper.commit_link(check),
                     target: '_blank', rel: 'noreferrer'
         td = check.passed
         td = l(check.created_at, format: :short)

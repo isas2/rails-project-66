@@ -1,7 +1,7 @@
 ru:
   simple_form:
     error_notification:
-      default_message: 'Пожалуйста, ознакомьтесь с проблемами ниже:'
+      default_message: 'Пожалуйста, ознакомьтесь с возникшими проблемами:'
     required:
       text: Поле обязательно для заполнения
     labels:
