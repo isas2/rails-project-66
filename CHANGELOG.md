@@ -1,5 +1,23 @@
 # Анализатор качества репозиториев
 
+## 0.9.1 (29.09.2024)
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L7 - ререндер быстрее. Плюс он автомагически отобразит ошибки в форме
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L12 - да, но я имела в виду хелпер, который живёт в папке helpers и используется только для вьюх.
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L16 - вполне валидный пойнт и хорошо реализованное решение. Единственное, что я бы в нём улучшила - в offences собирала бы не массив, а хэш с ключами, имена которых говорят о том, что под ними хранится
+
+  - Сделано
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L21 - ну вот это как раз не очень хорошо, так мы размазали логику стаббинга. Можно в стабе ориентироваться на саму команду и по ключевым словам в ней выдавать результат
+
+  - Вынес в отдельный массив в сам стаб 
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L25 - у меня проблема воспроизвелась сразу же, я проверяла на втором своём юзвере в гитхабе. Он увидел в селекте репы первого
+
+* https://github.com/isas2/rails-project-66/blob/f3f466fdf69d4a9f3375f6a40d7a29f0000b236b/CHANGELOG.md?plain=1#L41 - в остальные тесты тоже хорошо бы добавить проверки по результатам работы джоб
+
 ## 0.9.0 (23.09.2024)
 
 * https://github.com/isas2/rails-project-66/blob/ba0362e5f5d39e347cd0a513fce0532ea7ae1aee/app/controllers/web/repositories_controller.rb#L26 - а зачем редирект, если можно обойтись render?

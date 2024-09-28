@@ -38,7 +38,9 @@ class CheckReportHelper
         next unless file['offenses'].count.positive?
 
         offenses = file['offenses'].map do |offense|
-          [offense['message'], offense['cop_name'], "#{offense['location']['start_line']}:#{offense['location']['start_column']}"]
+          { message: offense['message'],
+            rule: offense['cop_name'],
+            location: "#{offense['location']['start_line']}:#{offense['location']['start_column']}" }
         end
         result << { path: file['path'][dir_length..], offenses: }
       end
@@ -51,7 +53,9 @@ class CheckReportHelper
         next unless file['messages'].count.positive?
 
         offenses = file['messages'].map do |offense|
-          [offense['message'], offense['ruleId'], "#{offense['line']}:#{offense['column']}"]
+          { message: offense['message'],
+            rule: offense['ruleId'],
+            location: "#{offense['line']}:#{offense['column']}" }
         end
         result << { path: file['filePath'].split("#{repo_name}/")[1], offenses: }
       end

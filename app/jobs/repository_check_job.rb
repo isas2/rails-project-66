@@ -8,14 +8,14 @@ class RepositoryCheckJob < ApplicationJob
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     commands = {
       ruby: [
-        { title: I18n.t('jobs.check.check'),
-          cmd: "bundle exec rubocop --config ./.rubocop.yml #{tmp_dir} --format json",
-          stub: '{"summary":{"offense_count":0}}' }
+        { id: :check01,
+          title: I18n.t('jobs.check.check'),
+          cmd: "bundle exec rubocop --config ./.rubocop.yml #{tmp_dir} --format json" }
       ],
       javascript: [
-        { title: I18n.t('jobs.check.check'),
-          cmd: "npx --no-eslintrc eslint #{tmp_dir} -c eslint.config.js --format json",
-          stub: '[{"errorCount":0,"warningCount":0}]' }
+        { id: :check02,
+          title: I18n.t('jobs.check.check'),
+          cmd: "npx --no-eslintrc eslint #{tmp_dir} -c eslint.config.js --format json" }
       ]
     }
 

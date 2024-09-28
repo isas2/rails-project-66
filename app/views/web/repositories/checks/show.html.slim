@@ -51,6 +51,6 @@ table.table
                     target: '_blank', rel: 'noreferrer'
         - file[:offenses].each do |offense|
           tr
-            td = offense[0]
-            td = offense[1]
-            td = offense[2]
+            td = offense[:message]
+            td = offense[:rule]
+            td = offense[:location]

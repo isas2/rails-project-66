@@ -13,12 +13,12 @@ class RepositoryCloneJob < ApplicationJob
     tmp_dir = "tmp/jobs/#{check.repository.full_name}"
     FileUtils.mkdir_p(tmp_dir)
     commands = [
-      { title: I18n.t('jobs.clone.clone'),
-        cmd: "git clone #{clone_url} #{tmp_dir} > /dev/null 1>&1",
-        stub: '' },
-      { title: I18n.t('jobs.clone.id'),
-        cmd: "git -C #{tmp_dir} rev-parse --short HEAD",
-        stub: '111111' }
+      { id: :clone01,
+        title: I18n.t('jobs.clone.clone'),
+        cmd: "git clone #{clone_url} #{tmp_dir} > /dev/null 1>&1" },
+      { id: :clone02,
+        title: I18n.t('jobs.clone.id'),
+        cmd: "git -C #{tmp_dir} rev-parse --short HEAD" }
     ]
 
     commander = ApplicationContainer[:command_helper]
